@@ -1,0 +1,57 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+
+<div class="jumbotron">
+
+    <div class="row">
+        <div class="col-md-6 pb-3">
+            <img src="~/Images/TheCluelessCook.png" alt="..." class="img-thumbnail bg-dark border-0 mx-auto d-block">
+            <h4 class="text-center display-4">The Clueless Cook</h4>
+            <p class="text-center h4">Meal ideas for the upcoming Master Chefs!</p>
+        </div>
+        <div class="col-md-4 offset-1">
+            <h3 class="text-success text-center">@ViewData["Title"]</h3>
+            <div class="pb-2"></div>
+            <hr class="bg-light" />
+            <div class="pb-3"></div>
+            <section>
+                <form id="account" method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label class="text-success h4" asp-for="Input.Email"></label>
+                        <input asp-for="Input.Email" class="form-control" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+                    <div class="pb-3"></div>
+                    <div class="form-group">
+                        <label class="text-success h4" asp-for="Input.Password"></label>
+                        <p class="float-right">
+                            <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                        </p>
+                        <input asp-for="Input.Password" class="form-control" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="pb-3"></div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label class="text-success h5" asp-for="Input.RememberMe">
+                                <input asp-for="Input.RememberMe" />
+                                @Html.DisplayNameFor(m => m.Input.RememberMe)
+                            </label>
+                            <button type="submit" class="btn btn-outline-success btn-secondary float-right">Log In</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -9,6 +9,7 @@ using TheCluelessCook.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TheCluelessCook.Services;
+using TheCluelessCook.Data.Models;
 
 namespace TheCluelessCook
 {
@@ -34,7 +35,7 @@ namespace TheCluelessCook
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddDefaultIdentity<ApplicationUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 

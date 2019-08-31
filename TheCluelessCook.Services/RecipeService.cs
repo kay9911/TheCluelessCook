@@ -17,9 +17,10 @@ namespace TheCluelessCook.Services
             _context = context;
         }
 
-        public Task CreateRecipe(Recipe recipe)
+        public async Task CreateRecipe(Recipe recipe)
         {
-            throw new NotImplementedException();
+            _context.Recipes.Add(recipe);
+            await _context.SaveChangesAsync();
         }
 
         public Task DeleteRecipe(int recipeId)

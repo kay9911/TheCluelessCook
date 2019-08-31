@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <Compile Remove="Migrations\20190826001133_Scaffolding Mess Cleanup.cs" />
+    <Compile Remove="Migrations\20190826032914_Identity Table Adds.cs" />
+    <Compile Remove="Migrations\20190826223841_Identity Table Adds v2.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -14,10 +16,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,33 @@
+﻿
+@model TheCluelessCook.Models.Planner.MealPlannerIndexModel
+
+<div class="accordion" id="_PlanPartialAccordian">
+    @foreach (var item in Model.days)
+    {
+        <div class="card">
+            <div class="card-body">
+                <button class="btn btn-block text-success" type="button" data-toggle="collapse" data-target="#@item.Day" aria-expanded="true" aria-controls="@item.Day">
+                    <h4 class="mb-0">@item.Day</h4>
+                </button>
+                <div class="pb-2"></div>
+                <div id="@item.Day" class="collapse" aria-labelledby="headingOne" data-parent="#_PlanPartialAccordian">
+                    <p class="h5 text-center">Breakfast</p>
+                    <ul class="list-group simple_with_animation" id="sortable">
+
+                    </ul>
+                    <div class="pb-2"></div>
+                    <p class="h5 text-center">Lunch</p>
+                    <ul class="list-group simple_with_animation" id="sortable">
+
+                    </ul>
+                    <div class="pb-2"></div>
+                    <p class="h5 text-center">Dinner</p>
+                    <ul class="list-group simple_with_animation" id="sortable">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

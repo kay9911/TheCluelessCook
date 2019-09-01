@@ -1,14 +1,25 @@
-﻿@model TheCluelessCook.Models.Recipes.RecipeIndexModel
-
-<h1 class="text-center">Recipe Cards</h1>
-
-@foreach (var recipe in Model.Recipes)
-{
-    <div class="card shadow-lg" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title">@recipe.Name</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+﻿<div class="jumbotron">
+    <div class="card-deck">
+        <div class="card border-0">
+            <img src="~/Images/Clue_Small.png" alt="..." class="img-thumbnail bg-dark border-0 mx-auto d-block">
+            <div class="card-body text-center">
+                <h2 class="card-title text-center text-success"><a asp-action="Index" asp-controller="MealPlanner">Prepare</a></h2>
+                <p class="card-text h4">Browse through our selections of meal ideas.</p>
+            </div>
+        </div>
+        <div class="card border-0">
+            <img src="~/Images/Plan_Small.png" alt="..." class="img-thumbnail bg-dark border-0 mx-auto d-block">
+            <div class="card-body text-center">
+                <h2 class="card-title text-center text-success">Plan</h2>
+                <p class="card-text h4">Already have plans? Skip on ahead.</p>
+            </div>
+        </div>
+        <div class="card border-0">
+            <img src="~/Images/Cart_Small.png" alt="..." class="img-thumbnail bg-dark border-0 mx-auto d-block">
+            <div class="card-body text-center">
+                <h2 class="card-title text-center text-success">Shop</h2>
+                <p class="card-text h4">Review whats on the shopping list.</p>
+            </div>
         </div>
     </div>
-}
+</div>

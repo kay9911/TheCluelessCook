@@ -11,6 +11,8 @@ namespace TheCluelessCook.Data.Planner
         public string Day { get; set; }
         // Day Date --> ex : 1,2,3,4,5
         public string Date { get; set; }
+        // User set time of day
+        public string UserBestEatenAt { get; set; }
 
         // Recipe Details
         public virtual Recipe Recipe { get; set; }

@@ -32,9 +32,10 @@ namespace TheCluelessCook.Controllers
                 .Select(detail => new DayDetailModel
                 {
                     Id = detail.Id,
-                    Date = detail.Day,
-                    Day = detail.Date,
+                    Date = detail.Date,
+                    Day = detail.Day,
                     recipe = detail.Recipe,
+                    UserBestTime = detail.UserBestEatenAt
                 });
 
             var model = new MealPlannerIndexModel

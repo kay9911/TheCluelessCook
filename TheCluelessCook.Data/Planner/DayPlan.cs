@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using TheCluelessCook.Data.Models;
+﻿using TheCluelessCook.Data.Models;
 using TheCluelessCook.Data.RecipeRelated;
 
 namespace TheCluelessCook.Data.Planner
@@ -9,14 +7,15 @@ namespace TheCluelessCook.Data.Planner
     {
         public int Id { get; set; }
 
-        public string DayOfTheWeek { get; set; }
+        // Name of day --> ex : Sunday, Monday, Tuesday
+        public string Day { get; set; }
+        // Day Date --> ex : 1,2,3,4,5
+        public string Date { get; set; }
 
-        public DateTime CreatedFor { get; set; }
+        // Recipe Details
+        public virtual Recipe Recipe { get; set; }
 
-        //public virtual IEnumerable<Recipe> Breakfast { get; set; }
-        //public virtual IEnumerable<Recipe> Lunch { get; set; }
-        //public virtual IEnumerable<Recipe> Dinner { get; set; }
-
-        public ApplicationUser User { get; set; }
+        // Uniue Id of User --> Identity Table UserId
+        public ApplicationUser UserId { get; set; }
     }
 }

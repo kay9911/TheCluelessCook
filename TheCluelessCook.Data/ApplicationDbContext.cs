@@ -21,7 +21,7 @@ namespace TheCluelessCook.Data
 
         // Model DataTables
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        public DbSet<Chef> Chefs { get; set; }
+        //public DbSet<Chef> Chefs { get; set; }
 
         // Planner DataTables
         public DbSet<DayPlan> DayPlans { get; set; }

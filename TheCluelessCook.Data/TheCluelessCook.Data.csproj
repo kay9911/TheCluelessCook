@@ -8,6 +8,7 @@
     <Compile Remove="Migrations\20190826001133_Scaffolding Mess Cleanup.cs" />
     <Compile Remove="Migrations\20190826032914_Identity Table Adds.cs" />
     <Compile Remove="Migrations\20190826223841_Identity Table Adds v2.cs" />
+    <Compile Remove="Migrations\20190901212100_DayPlan Changes.cs" />
   </ItemGroup>
 
   <ItemGroup>

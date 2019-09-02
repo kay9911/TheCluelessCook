@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TheCluelessCook.Data;
 
 namespace TheCluelessCook.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190901212547_DayPlan Changes")]
+    partial class DayPlanChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,11 +191,36 @@ namespace TheCluelessCook.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("TheCluelessCook.Data.Models.Chef", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Country");
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Chefs");
+                });
+
             modelBuilder.Entity("TheCluelessCook.Data.Planner.DayPlan", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("ChefId");
 
                     b.Property<string>("Date");
 
@@ -204,6 +231,8 @@ namespace TheCluelessCook.Data.Migrations
                     b.Property<string>("UserIdId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ChefId");
 
                     b.HasIndex("RecipeId");
 
@@ -218,6 +247,8 @@ namespace TheCluelessCook.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("ChefId");
+
                     b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("ListName");
@@ -225,6 +256,8 @@ namespace TheCluelessCook.Data.Migrations
                     b.Property<string>("UserId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ChefId");
 
                     b.HasIndex("UserId");
 
@@ -366,8 +399,19 @@ namespace TheCluelessCook.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("TheCluelessCook.Data.Models.Chef", b =>
+                {
+                    b.HasOne("TheCluelessCook.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
             modelBuilder.Entity("TheCluelessCook.Data.Planner.DayPlan", b =>
                 {
+                    b.HasOne("TheCluelessCook.Data.Models.Chef")
+                        .WithMany("TheWeeksPlan")
+                        .HasForeignKey("ChefId");
+
                     b.HasOne("TheCluelessCook.Data.RecipeRelated.Recipe", "Recipe")
                         .WithMany()
                         .HasForeignKey("RecipeId");
@@ -379,6 +423,10 @@ namespace TheCluelessCook.Data.Migrations
 
             modelBuilder.Entity("TheCluelessCook.Data.Planner.ShoppingList", b =>
                 {
+                    b.HasOne("TheCluelessCook.Data.Models.Chef")
+                        .WithMany("ShoppingLists")
+                        .HasForeignKey("ChefId");
+
                     b.HasOne("TheCluelessCook.Data.Models.ApplicationUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");

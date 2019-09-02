@@ -1,6 +1,5 @@
 ﻿
 @model TheCluelessCook.Models.Planner.MealPlannerIndexModel
-
 <div class="accordion" id="_PlanPartialAccordian">
     @foreach (var item in Model.days)
     {
@@ -12,18 +11,27 @@
                 <div class="pb-2"></div>
                 <div id="@item.Day" class="collapse" aria-labelledby="headingOne" data-parent="#_PlanPartialAccordian">
                     <p class="h5 text-center">Breakfast</p>
-                    <ul class="list-group simple_with_animation" id="sortable">
-
+                    <ul class="list-group sortable">
+                        @foreach (var detail in Model.details.Where(x => x.Day == item.Day))
+                        {
+                            <li class="list-group-item border-success">@detail.recipe.Name</li>
+                        }
                     </ul>
                     <div class="pb-2"></div>
                     <p class="h5 text-center">Lunch</p>
-                    <ul class="list-group simple_with_animation" id="sortable">
-
+                    <ul class="list-group sortable">
+                        @*@foreach (var detail in Model.details.Where(x => x.Day == item.Day))
+                        {
+                            <li class="list-group-item border-success">@detail.recipe.Name</li>
+                        }*@
                     </ul>
                     <div class="pb-2"></div>
                     <p class="h5 text-center">Dinner</p>
-                    <ul class="list-group simple_with_animation" id="sortable">
-
+                    <ul class="list-group sortable">
+                        @*@foreach (var detail in Model.details.Where(x => x.Day == item.Day))
+                        {
+                            <li class="list-group-item border-success">@detail.recipe.Name</li>
+                        }*@
                     </ul>
                 </div>
             </div>

@@ -4,8 +4,71 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @model TheCluelessCook.Models.Planner.MealPlannerIndexModel
+<style>
+    .placeholder {
+        background-color: #00bc8c;
+    }
+
+    .sortable {
+        min-height: 10px;
+    }
+
+    /*.draggable {
+        position: relative;
+        width: 50px;
+        height: 48px;
+    }*/
+</style>
+<script>
+    var adjustment;
+
+    $(function () {
+        $(".sortable").sortable({
+            revert: true,
+            placeholder: 'placeholder',
+            connectWith: '.sortable',
+            start: function (event, ui){
+                $(ui.item).addClass('border-success');
+            },
+            // set $item relative to cursor position
+            onDragStart: function ($item, container, _super) {
+                var offset = $item.offset(),
+                    pointer = container.rootGroup.pointer;
+
+                adjustment = {
+                    left: pointer.left - offset.left,
+                    top: pointer.top - offset.top
+                };
+
+                _super($item, container);
+            },
+            onDrag: function ($item, position) {
+                $item.css({
+                    left: position.left - adjustment.left,
+                    top: position.top - adjustment.top
+                });
+            },
+            stop: function (e, ui) {
+                $(ui.item).removeAttr('style');
+            }
+        });
+
+        $(".draggable").draggable({
+            connectToSortable: ".sortable",
+            helper: "clone",
+            revert: "invalid",
+            //containment: ".sortable"
+            //drop: function (e, ui) {
+            //    $(ui.item).removeAttr("style");
+            //}
+        });
+
+        // Disable the ability to highlight text in the divs
+        $("ul, li").disableSelection();
+    });
+</script>
 <div class="row">
-    <div class="col-8">
+    <div class="col-md-8">
         <div class="card">
             <div class="card-body">
                 <h3 class="card-title">Breakfast</h3>
@@ -17,14 +80,14 @@
                             </button>
                         </div>
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <ul class="list-group simple_with_animation">
-                                <li class="list-group-item d-flex align-items-center">
+                            <ul class="list-group">
+                                <li class="list-group-item draggable">
                                     Cras justo odio
                                 </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <li class="list-group-item d-flex justify-content-between align-items-center" id="draggable">
                                     Dapibus ac facilisis in
                                 </li>
-                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <li class="list-group-item d-flex justify-content-between align-items-center" id="draggable">
                                     Morbi leo risus
                                 </li>
                             </ul>
@@ -95,7 +158,7 @@
             </div>
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-md-4">
         <partial name="~/Views/MealPlanner/_PlanPartial.cshtml" model="Model">
     </div>
 </div>

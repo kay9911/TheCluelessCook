@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace TheCluelessCook.Models.Planner
 {
     public class MealPlannerIndexModel
     {
-        public IEnumerable<DayDetailModel> days { get; set; }
+        // This will build the accordian
+        public IEnumerable<WeeklyPlanAccordianModel> days { get; set; }
+
+        // Data that goes into the accordian
+        public IEnumerable<DayDetailModel> details { get; set; }
     }
 }
